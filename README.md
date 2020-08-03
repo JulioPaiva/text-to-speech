@@ -6,17 +6,17 @@
 ## .Env 
 
 _Configuration BD_
-DB_HOST=
-DB_USER=
-DB_PSW=
-DB_BASE=
+- DB_HOST=
+- DB_USER=
+- DB_PSW=
+- DB_BASE=
 
 _API Node port_
-PORT=
+- PORT=
 
 _Auth API Watson_
-API_KEY=
-API_URL=
+- API_KEY=
+- API_URL=
 
 ## GET STARTED 
 npm install
