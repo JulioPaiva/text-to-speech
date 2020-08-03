@@ -1,22 +1,22 @@
 # API Text to Speech IBM Watson
 
-** Node Version **
+## Node Version 
 10.22.0
 
-** .Env **
+## .Env 
 
-*Configuration BD*
+_Configuration BD_
 DB_HOST=
 DB_USER=
 DB_PSW=
 DB_BASE=
 
-*API Node port*
+_API Node port_
 PORT=
 
-*Auth API Watson*
+_Auth API Watson_
 API_KEY=
 API_URL=
 
-** GET STARTED **
+## GET STARTED 
 npm install
