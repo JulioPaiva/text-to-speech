@@ -1,0 +1,7 @@
+node_modules/
+build/
+.log
+.idea/
+.vscode/
+debug.log*
+.env

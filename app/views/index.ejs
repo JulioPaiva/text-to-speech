@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentários</title>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery-2.2.1.js"></script>
+</head>
+<body>
+    <section class="left">
+        <label>Comentário</label>
+        <textarea rows="10"></textarea>
+        <button type="button">Cadastrar</button>
+    </section>
+
+    <section class="right">
+        <h2>Comentários</h2>
+        <div class="quadro"></div>
+    </section>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "http://localhost:3366/buscar",
+        type: 'GET',
+        contentType: 'application/json',  
+        success: function(retorno){
+            for (let r in retorno){                
+                $('.quadro')
+                    .append(`<div class="comentario"><p>${retorno[r].comentario}</p><button onClick="play(${retorno[r].id})">Ouvir</buttton><audio controls class="${retorno[r].id}"><source src="/audio/${retorno[r].id}.wav" type="audio/mpeg"></audio></div>`); 
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            alert('Ocorreu um erro ao buscar comentários. Tente novamente mais tarde!');
+        }});
+    })
+
+    $('button').click( () => {
+        let data = $('textarea').val();
+
+        if (data.length < 255) {
+            $.ajax({
+                method: "POST",
+                url: "http://localhost:3366/salvar",
+                data: { 
+                    comentario: data 
+                }, 
+                success: function(retorno){
+                    alert('Comentário salvo com sucesso!');
+
+                    location.reload();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    alert('Ocorreu um erro ao salvar. Tente novamente!')
+                }
+            });
+        } else {
+            alert('Limite máximo de 255 caracteres.'); 
+        }
+    });
+
+    function play(data) {
+        let audio = `.${data}`
+        $('.' + data)[0].play();
+    }
+</script>
